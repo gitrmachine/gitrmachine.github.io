@@ -377,7 +377,10 @@ document.getElementById("switchItnSubmit").addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((data) => {
       localStorage.setItem("itinerary", JSON.stringify(data));
-      //window.location.href = window.location.href.replace('/itinerary', '/confirm')
+      window.location.href = window.location.href.replace(
+        "/itinerary",
+        "/confirm"
+      );
       console.log("Success:", data);
     })
     .catch((error) => {
