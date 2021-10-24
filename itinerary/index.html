@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+    <title></title>
+    <script src="../js/main.js"></script>
+</head>
+
+<body>
+    <main class="flex flex-col h-screen">
+        <div class="flex-1 overflow-y-auto md:flex md:overflow-hidden">
+            <div class="flex bg-gray-100 bg-ActiveGray text-white flex-col w-screen text-center md:w-auto md:text-left">
+                <h1 class="px-10 text-xl pt-10 pb-5">Grass in the <span class="text-GITR">Road</span></h1>
+                <h1 class="px-10 text-sm mb-8 md:mb-0">Itinerary Builder v1.0</h1>
+                <div
+                    class="text-center flex pt-20 space-y-8 flex-col mx-auto mb-10 hidden md:mb-0 md:text-left md:px-10 md:block">
+                    <button
+                        class="text-base flex text-InactiveIT self-center progTitle active:text-white hover:text-white focus:text-white md:text-lg md:self-start"
+                        id="basicinfo" onclick="jumpTo(0)">Basic information</button><button
+                        class="text-base flex text-InactiveIT self-center progTitle active:text-white hover:text-white focus:text-white md:text-lg md:self-start"
+                        id="duration" onclick="jumpTo(1)">Duration</button><button
+                        class="text-base flex text-InactiveIT self-center progTitle active:text-white hover:text-white focus:text-white md:text-lg md:self-start"
+                        id="tripinfo" onclick="jumpTo(2)">Trip information</button><button
+                        class="text-base flex text-InactiveIT self-center progTitle active:text-white hover:text-white focus:text-white md:text-lg md:self-start"
+                        id="stayind" onclick="jumpTo(3)">Where to stay</button><button
+                        class="text-base flex text-InactiveIT self-center progTitle active:text-white hover:text-white focus:text-white md:text-lg md:self-start"
+                        id="actf" onclick="jumpTo(4)">Activities and frequency</button><button
+                        class="text-base flex text-InactiveIT self-center progTitle active:text-white hover:text-white focus:text-white md:text-lg md:self-start"
+                        id="budget" onclick="jumpTo(5)">Budget</button><button
+                        class="text-base flex text-InactiveIT self-center progTitle active:text-white hover:text-white focus:text-white md:text-lg md:self-start"
+                        id="extrainfo" onclick="jumpTo(6)">Finalize</button></div>
+            </div>
+            <div class="flex flex-1 flex-col overflow-y-auto px-20 py-20">
+                <div class="category0">
+                    <h1 class="text-3xl mb-10">Basic information</h1>
+                    <h1 class="text-xl">What is your name?</h1>
+                    <h1 class="text-red-500 mt-5 hidden" id="nameError">Please enter a name.</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0"><input
+                            class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
+                            id="nameField" type="text" placeholder="Enter your name here."></div>
+                    <h1 class="text-xl">What is your email address?</h1>
+                    <h1 class="text-red-500 mt-5 hidden" id="emailError">Please enter a valid email address.</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0"><input
+                            class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
+                            id="emailField" type="text" placeholder="Enter your name here."></div>
+                </div>
+                <div class="category1 hidden">
+                    <h1 class="text-3xl mb-10">Duration</h1>
+                    <h1 class="text-xl">When is your arrival date in Ireland?</h1>
+                    <h1 class="text-red-500 mt-5 hidden" id="arrivalDateError">Your arrival date must be in the future.
+                        Please select a date in the future.</h1>
+                    <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak="">
+                        <div class="py-10">
+                            <div class="w-64">
+                                <div
+                                    class="relative relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full">
+                                    <input type="hidden" name="date" x-ref="date" :value="datepickerValue"><input
+                                        class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm text-gray-600 font-medium focus:outline-none focus:ring focus:ring-blue-600 focus:ring-opacity-50"
+                                        id="arrivalDate" type="text" x-on:click="showDatepicker = !showDatepicker"
+                                        x-model="datepickerValue" x-on:keydown.escape="showDatepicker = false"
+                                        placeholder="Select date" readonly="">
+                                    <div class="absolute top-0 right-0 px-3 py-2"><svg class="h-6 w-6 text-gray-400"
+                                            fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                            </path>
+                                        </svg></div>
+                                    <div class="bg-white mt-12 rounded-lg shadow p-4 absolute top-0 left-0"
+                                        style="width: 17rem; z-index: 1000;" x-show.transition="showDatepicker"
+                                        @click.away="showDatepicker = false">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <div><span class="text-lg font-bold text-gray-800"
+                                                    x-text="MONTH_NAMES[month]"></span><span
+                                                    class="ml-1 text-lg text-gray-600 font-normal" x-text="year"></span>
+                                            </div>
+                                            <div><button
+                                                    class="transition ease-in-out duration-100 inline-flex cursor-pointer p-1 rounded-full focus:outline-none focus:shadow-outline hover:bg-gray-100"
+                                                    type="button"
+                                                    @click="var curTime = new Date(); if (year == curTime.getFullYear() &amp;&amp; month &gt; curTime.getMonth()) {month--;} if (year &gt; curTime.getFullYear()) {if (month == 0) {year--; month = 12; month--} else {month--;}} getNoOfDays()"><svg
+                                                        class="h-6 w-6 text-gray-400 inline-flex" fill="none"
+                                                        viewbox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                                    </svg></button><button
+                                                    class="transition ease-in-out duration-100 inline-flex cursor-pointer p-1 rounded-full focus:outline-none focus:shadow-outline hover:bg-gray-100"
+                                                    type="button"
+                                                    @click="if (month == 11) {month = 0; year++; } else { month++; } getNoOfDays()"><svg
+                                                        class="h-6 w-6 text-gray-400 inline-flex" fill="none"
+                                                        viewbox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                    </svg></button></div>
+                                        </div>
+                                        <div class="flex flex-wrap mb-3 -mx-1"><template x-for="(day, index) in DAYS"
+                                                :key="index">
+                                                <div class="px-0.5" style="width: 14.26%">
+                                                    <div class="text-gray-800 font-medium text-center text-xs"
+                                                        x-text="day"></div>
+                                                </div>
+                                            </template></div>
+                                        <div class="flex flex-wrap -mx-1"><template x-for="blankday in blankdays">
+                                                <div class="text-center border p-1 border-transparent text-sm"
+                                                    style="width: 14.28%"></div>
+                                            </template><template x-for="(date, dateIndex) in no_of_days"
+                                                :key="dateIndex">
+                                                <div class="px-1 mb-1" style="width: 14.28%">
+                                                    <div class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition ease-in-out duration-100"
+                                                        @click="getDateValue(date)" x-text="date"
+                                                        :class="{'hover:bg-ActiveGray': isToday(date) == true,  'text-gray-800 hover:text-white hover:bg-ActiveGray': isToday(date) == false &amp;&amp; isSelectedDate(date) == false, 'bg-ActiveGray text-white hover:bg-opacity-75': isSelectedDate(date) == true, 'hover:text-white': isSelectedDate(date) == false &amp;&amp; isToday(date) == true}">
+                                                    </div>
+                                                </div>
+                                            </template></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="text-xl">How many nights in Ireland?</h1>
+                    <div class="mt-5 mb-10 flex flex-row mb-3 pt-0"><input
+                            class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 self-center"
+                            style="width: 16rem;" id="durationNightSlide" type="range" min="1" max="15" step="1"
+                            value="0"><span class="pl-8" id="nightsText">1 nights</span></div>
+                    <h1 class="text-xl">Where is your arrival point?</h1>
+                    <h1 class="text-red-500 mt-5 hidden" id="locationError">Please select an arrival location</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Dublin" checked="checked"><span class="ml-2">Dublin</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Belfast"><span class="ml-2">Belfast</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Cork"><span class="ml-2">Cork</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Shannon"><span class="ml-2">Shannon</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Knock"><span class="ml-2">Knock</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Kerry"><span class="ml-2">Kerry</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Derry"><span class="ml-2">Derry</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Waterford"><span class="ml-2">Waterford</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Donegal"><span class="ml-2">Donegal</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Ferry"><span class="ml-2">Ferry</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="arrive"
+                                        value="Don't know yet"><span class="ml-2">Don't know yet</span></label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category2 hidden">
+                    <h1 class="text-3xl mb-10">Trip information</h1>
+                    <h1 class="text-xl">How many adults are going?</h1>
+                    <div class="mt-5 mb-10 flex flex-row mb-3 pt-0"><input
+                            class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 self-center"
+                            style="width: 16rem;" id="durationNightSlideAdults" type="range" min="1" max="10" step="1"
+                            value="0"><span class="pl-8" id="nightsTextAdult">1 adults</span></div>
+                    <h1 class="text-xl">How many children are going?</h1>
+                    <div class="mt-5 mb-10 flex flex-row mb-3 pt-0"><input
+                            class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 self-center"
+                            style="width: 16rem;" id="durationNightSlideChildren" type="range" min="0" max="10" step="1"
+                            value="0"><span class="pl-8" id="nightsTextChild">0 children</span></div>
+                    <h1 class="text-xl">What is the age range of the children? (optional)</h1>
+                    <h1 class="text-red-500 mt-5 hidden" id="ageRangeError">Please select at least one age range if
+                        there is at least one child.</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray" type="checkbox"
+                                        name="childrange" value="0-1 years"><span class="ml-2">0-1 years</span></label>
+                            </div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray" type="checkbox"
+                                        name="childrange" value="2-5 years"><span class="ml-2">2-5 years</span></label>
+                            </div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray" type="checkbox"
+                                        name="childrange" value="6-10 years"><span class="ml-2">6-10
+                                        years</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray" type="checkbox"
+                                        name="childrange" value="11-18 years"><span class="ml-2">11-18
+                                        years</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray" type="checkbox"
+                                        name="childrange" value="NA"><span class="ml-2">N/A</span></label></div>
+                        </div>
+                    </div>
+                    <h1 class="text-xl">Will you have personal transportation? (i.e rental car)</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="transport"
+                                        value="Yes" checked=""><span class="ml-2">Yes</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="transport"
+                                        value="No"><span class="ml-2">No</span></label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category3 hidden">
+                    <h1 class="text-3xl mb-10">Where to stay</h1>
+                    <h1 class="text-xl">Where would you like to stay? (choose as many as you'd like)</h1>
+                    <h1 class="text-red-500 mt-5 hidden" id="stayError">Please select at least one place to stay.</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray stayChoices" type="checkbox"
+                                        value="camp"><span class="ml-2">Campsite</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray stayChoices" type="checkbox"
+                                        value="hostel"><span class="ml-2">Hostel</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray stayChoices" type="checkbox"
+                                        value="bnb"><span class="ml-2">B&B</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray stayChoices" type="checkbox"
+                                        value="castle"><span class="ml-2">Castle</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray stayChoices" type="checkbox"
+                                        value="lighthouse"><span class="ml-2">Lighthouse</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray stayChoices" type="checkbox"
+                                        value="str3"><span class="ml-2">3 star hotel</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray stayChoices" type="checkbox"
+                                        value="str4"><span class="ml-2">4-5 star hotel</span></label></div>
+                        </div>
+                    </div>
+                    <h1 class="text-xl">How many nights would you like to spend in each area you visit?</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="nightsSpend"
+                                        value="1 night" checked=""><span class="ml-2">1 night</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="nightsSpend"
+                                        value="2-3 nights"><span class="ml-2">2-3 nights</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="nightsSpend"
+                                        value="4-6 nights"><span class="ml-2">4-6 nights</span></label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category4 hidden">
+                    <h1 class="text-3xl mb-10">Activities</h1>
+                    <h1 class="text-xl">How active would you like your trip to be? (time spent doing recreational
+                        activities)</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="activity"
+                                        value="2-4 hours of activity per day" checked=""><span class="ml-2">2-4 hours of
+                                        activity per day</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="activity"
+                                        value="4-6 hours of activity per day"><span class="ml-2">4-6 hours of activity
+                                        per day</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="activity"
+                                        value="6-12 hours of activity per day"><span class="ml-2">6-12 hours of activity
+                                        per day</span></label></div>
+                        </div>
+                    </div>
+                    <h1 class="text-xl">On a scale of 1-5, would you rather see "classic" Ireland or explore some
+                        off-the-beaten-path destinations?</h1>
+                    <div class="mt-5 mb-10 flex flex-row mb-3 pt-0"><span class="pr-8">Classic</span><input
+                            class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 self-center"
+                            style="width: 16rem;" id="scaleSlide" type="range" min="1" max="5" step="1" value="0"><span
+                            class="pl-8">Off-beaten path</span></div>
+                    <h1 class="text-xl">Check the things that are important to you on a holiday. Choose as many as you'd
+                        like.</h1>
+                    <h1 class="text-red-500 mt-5 hidden" id="holidayError">Please select at least one thing important to
+                        you on a holiday.</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="sports"><span class="ml-2">Sports</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="music"><span class="ml-2">Live Music</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="arts"><span class="ml-2">The Arts</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="history"><span class="ml-2">History</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="traditional"><span class="ml-2">Traditional</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="urban"><span class="ml-2">Urban Areas</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="rural"><span class="ml-2">Rural Areas</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="pubs"><span class="ml-2">Pubs</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="beaches"><span class="ml-2">Beaches</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="museums"><span class="ml-2">Museums</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="science"><span class="ml-2">Science</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-checkbox bg-gray-200 text-ActiveGray holiday" type="checkbox"
+                                        value="religion"><span class="ml-2">Religion</span></label></div>
+                        </div>
+                    </div>
+                    <h1 class="text-xl">Recognizing that more than one word below could be applicable, pick the ONE word
+                        that best describes you.</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="word"
+                                        value="Traditional" checked=""><span class="ml-2">Traditionalist</span></label>
+                            </div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="word"
+                                        value="Intellectual"><span class="ml-2">Intellectual</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="word"
+                                        value="Romantic"><span class="ml-2">Romantic</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="word"
+                                        value="Adventurous"><span class="ml-2">Adventurous</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="word"
+                                        value="Foodie"><span class="ml-2">Foodie</span></label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category5 hidden">
+                    <h1 class="text-3xl mb-10">Budget</h1>
+                    <h1 class="text-xl">What is your budget per day? Include your entire party in your answer. Include
+                        activities and accommodation (no airfare).</h1>
+                    <div class="block">
+                        <div class="mt-5 mb-5">
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="budget"
+                                        value="100-250 euro" checked=""><span class="ml-2">100-250 euro</span></label>
+                            </div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="budget"
+                                        value="250-500 euro"><span class="ml-2">250-500 euro</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="budget"
+                                        value="500-1000 euro"><span class="ml-2">500-1000 euro</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="budget"
+                                        value="1000-2000 euro"><span class="ml-2">1000-2000 euro</span></label></div>
+                            <div><label class="inline-flex items-center"><input
+                                        class="form-radio bg-gray-200 text-ActiveGray" type="radio" name="budget"
+                                        value="No concern about budget"><span class="ml-2">No concern about
+                                        budget</span></label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category6 hidden">
+                    <h1 class="text-3xl mb-10">Finalize</h1>
+                    <h1 class="text-xl te">Your Name</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmName"></h1>
+                    </div>
+                    <h1 class="text-xl">Your Email Address</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmEmail"> </h1>
+                    </div>
+                    <h1 class="text-xl">Arrival Date</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmArrivalDate"> </h1>
+                    </div>
+                    <h1 class="text-xl">Nights in Ireland</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmNights"> </h1>
+                    </div>
+                    <h1 class="text-xl">Arrival Point</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmArrivalPoint"> </h1>
+                    </div>
+                    <h1 class="text-xl">Number of Adults</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmNumberAdults"> </h1>
+                    </div>
+                    <h1 class="text-xl">Number of Children</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmNumberChildren"> </h1>
+                    </div>
+                    <h1 class="text-xl">Age Range of Children</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0" id="confirmChildrenAgeRange"></div>
+                    <h1 class="text-xl">Personal Transportation</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmTransportation"> </h1>
+                    </div>
+                    <h1 class="text-xl">Places To Stay</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0" id="confirmPlacesStay"></div>
+                    <h1 class="text-xl">Nights in each area</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmNightsInArea"> </h1>
+                    </div>
+                    <h1 class="text-xl">Frequency of Activity</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmFrequency"> </h1>
+                    </div>
+                    <h1 class="text-xl">Destinations Scale (Classic - Off the beaten path)</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmDestinationScale"> </h1>
+                    </div>
+                    <h1 class="text-xl">Important Activities</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0" id="confirmActivities"></div>
+                    <h1 class="text-xl">Descriptive Word</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmWord"> </h1>
+                    </div>
+                    <h1 class="text-xl">Budget</h1>
+                    <div class="mt-5 mb-10 mb-3 pt-0">
+                        <h1 id="confirmBudget"> </h1>
+                    </div>
+                </div>
+                <div class="flex flex-row flex-end"><button
+                        class="bg-ActiveGray self-end mt-20 text-white px-5 py-3 hidden md:px-10"
+                        onclick="itnSwitch('previous')" id="switchItnPrev">Previous</button><button
+                        class="bg-ActiveGray self-end mt-20 text-white px-5 py-3 ml-auto md:px-10"
+                        onclick="itnSwitch('next')" id="switchItnNext">Next</button><button
+                        class="bg-ActiveGray self-end mt-20 text-white px-5 py-3 ml-auto hidden md:px-10"
+                        id="switchItnSubmit">Submit</button></div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.getElementById('durationNightSlide').addEventListener('input', (event) => {
+            const result = document.getElementById('nightsText')
+
+            result.textContent = `${event.target.value} nights`;
+        });
+
+        document.getElementById('durationNightSlideAdults').addEventListener('input', (event) => {
+            const result = document.getElementById('nightsTextAdult')
+
+            result.textContent = `${event.target.value} adults`;
+        });
+
+        document.getElementById('durationNightSlideChildren').addEventListener('input', (event) => {
+            const result = document.getElementById('nightsTextChild')
+
+            result.textContent = `${event.target.value} children`;
+        });
+
+        /*function callback() {
+            var places = new google.maps.places.Autocomplete(document.getElementById('arrivalPointIn'));
+        }*/</script>
+    <script src="../js/validate.js" async></script>
+</body>
+
+</html>

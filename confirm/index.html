@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="../../css/styles.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script><title></title></head><body><main class="flex flex-col h-screen"><div class="overflow-y-auto"><div class="flex bg-gray-100 bg-ActiveGray text-white flex-col w-screen text-center md:w-auto"><h1 class="px-10 text-xl pt-10 pb-5">Grass in the <span class="text-GITR">Road</span></h1><h1 class="px-10 text-sm mb-8">Itinerary Builder v1.0</h1></div></div><div class="flex flex-1 flex-col overflow-y-auto px-20 py-20"><div class="mb-20"><h1 class="text-center text-2xl" id="nameTitle">Hey </h1><h1 class="text-center text-xl" id="emailTitle">Here's your itinerary we sent to </h1></div><div class="itineraryData"></div></div></main></body><script>var data = localStorage.getItem('itinerary')
+var parsed = JSON.parse(data);
+
+document.getElementById('nameTitle').innerHTML += parsed.name + '.'
+document.getElementById('emailTitle').innerHTML += parsed.email + '.'
+
+var itn = document.querySelector('.itineraryData')
+
+var dayIndex = 1;
+
+var regions = parsed.regions;
+
+for (var i = 0; i < regions.length; i++) {
+    // Region title
+    var title = document.createElement("h1");
+    title.classList.add('text-center')
+    title.classList.add('text-3xl')
+    title.appendChild(document.createTextNode(`Region ${i + 1}`))
+    itn.append(title);
+
+
+    var newh = document.createElement("div");
+    newh.classList.add('text-center')
+    newh.classList.add('my-10')
+    newh.classList.add('bg-ActiveGray')
+    newh.classList.add('text-white')
+
+    var childRegion = document.createElement('h1')
+    childRegion.classList.add('text-2xl')
+    childRegion.classList.add('pt-10')
+    var textNode = document.createTextNode(`${regions[i].name}`); 
+    childRegion.appendChild(textNode)
+    newh.appendChild(childRegion)
+
+
+    // Hotel div
+
+    var hotelDiv = document.createElement("div");
+    hotelDiv.classList.add('text-center')
+    hotelDiv.classList.add('my-10')
+
+    var hotel = document.createElement("h1");
+    hotel.classList.add('text-xl')
+    //hotel.classList.add('mb-8')
+    hotel.appendChild(document.createTextNode("Hotel"))
+    hotelDiv.appendChild(hotel);
+
+    var hotelName = document.createElement("h1");
+    hotelName.appendChild(document.createTextNode(`${regions[i].hotel.name}`))
+    hotelDiv.appendChild(hotelName);
+
+    var hotelEmail = document.createElement("h1");
+    hotelEmail.appendChild(document.createTextNode(`${regions[i].hotel.email}`))
+    hotelDiv.appendChild(hotelEmail);
+
+    var hotelWebsite = document.createElement("h1");
+    hotelWebsite.appendChild(document.createTextNode(`${regions[i].hotel.website}`))
+    hotelDiv.appendChild(hotelWebsite);
+
+    newh.append(hotelDiv)
+
+    // Days
+    for (var j = 0; j < regions[i].days.length; j++) {
+        var dayDiv = document.createElement('div');
+
+        var day = document.createElement("h1");
+        day.classList.add('my-10')
+        day.classList.add('bg-GITR')
+        day.classList.add('text-white')
+        day.classList.add('py-3')
+        day.appendChild(document.createTextNode(`Day ${dayIndex} (${regions[i].days[j].date})`))
+
+        dayDiv.append(day)
+
+        var active = document.createElement("h1");
+        active.classList.add('font-bold')
+        active.appendChild(document.createTextNode(`Activities`))
+        dayDiv.append(active)
+
+        for (var n = 0; n < regions[i].days[j].activities.length; n++) {
+            var activityDiv = document.createElement('div')
+            activityDiv.classList.add('my-10')
+
+            var activityname = document.createElement("h1");
+            activityname.appendChild(document.createTextNode(`${regions[i].days[j].activities[n].name}`))
+
+            var activityemail = document.createElement("h1");
+            activityemail.appendChild(document.createTextNode(`${regions[i].days[j].activities[n].email}`))
+
+            var activityreservation = document.createElement("h1");
+            activityreservation.appendChild(document.createTextNode(`${regions[i].days[j].activities[n].reservation ? "Reservation: Yes" : "Reservation: No"}`))
+            
+            var activitywebsite = document.createElement("h1");
+            activitywebsite.appendChild(document.createTextNode(`${regions[i].days[j].activities[n].website}`))
+
+            activityDiv.append(activityname)
+            activityDiv.append(activityemail)
+            activityDiv.append(activityreservation)
+            activityDiv.append(activitywebsite)
+
+            dayDiv.appendChild(activityDiv)
+        }
+
+        dayDiv.classList.add('pb-10')
+        dayIndex++;
+        newh.append(dayDiv)
+    }
+
+    itn.append(newh)
+}</script></html>

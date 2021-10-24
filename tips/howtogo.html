@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../css/styles.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+<link rel="stylesheet" type="text/css" href="../../../assets/content-tools.min.css">
+
+<body>
+    <div class="content">
+        <div class="w-full text-gray-700 bg-transparent dark-mode:text-gray-200 dark-mode:bg-gray-800">
+            <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8"
+                x-data="{ open: false }" style="padding-top: 2rem">
+                <div class="p-4 flex flex-row items-center justify-between"><a
+                        class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
+                        href="../index.html">Grass in the<span class="px-2 text-GITR">Road</span></a><button
+                        class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open"><svg
+                            class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20">
+                            <path x-show="!open" fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                            <path x-show="open" fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg></button></div>
+                <nav class="flex-col flex-grow pb-4 hidden md:pb-0 md:flex md:justify-end md:flex-row"
+                    :class="{'flex': open, 'hidden': !open}"><a
+                        class="px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg navItem dark-mode:focus:test dark-mode:hover:test dark-mode:text-gray-200 md:mt-0 active:text-ActiveGray hover:text-ActiveGray focus:text-ActiveGray focus:outline-none focus:shadow-outline"
+                        href="../index.html">home</a>
+                    <div class="relative" @click.away="open = false" x-data="{ open: false }"><button
+                            class="navItem flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg dark-mode:bg-transparent md:w-auto md:inline md:mt-0  focus:outline-none focus:shadow-outline"
+                            @click="open = !open" style="padding-right: 0rem"><span
+                                class="active:text-ActiveGray hover:text-ActiveGray focus:text-ActiveGray">ireland</span><svg
+                                class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"
+                                fill="currentColor" viewbox="0 0 20 20"
+                                :class="{'rotate-180': open, 'rotate-0': !open}">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg></button>
+                        <div class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-md md:w-48"
+                            x-show="open" x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95" style="z-index: 4000">
+                            <div class="px-2 py-2 bg-white rounded-md"><a
+                                    class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg navItem dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                    href="../trips/index.html">trips</a><a
+                                    class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg navItem dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                    href="../history/index.html">history</a><a
+                                    class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg navItem dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                    href="../irishcuisine/index.html">irish cuisine (food)</a><a
+                                    class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg navItem dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                    href="../lingo/index.html">dictionary (lingo)</a></div>
+                        </div>
+                    </div>
+                    <div class="relative" @click.away="open = false" x-data="{ open: false }"><button
+                            class="navItem flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg dark-mode:bg-transparent md:w-auto md:inline md:mt-0  focus:outline-none focus:shadow-outline"
+                            @click="open = !open" style="padding-right: 0rem"><span
+                                class="active:text-ActiveGray hover:text-ActiveGray focus:text-ActiveGray">travel
+                                tips</span><svg
+                                class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"
+                                fill="currentColor" viewbox="0 0 20 20"
+                                :class="{'rotate-180': open, 'rotate-0': !open}">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg></button>
+                        <div class="absolute right-0 w-full mt-2 origin-top-right rounded-sm shadow-md md:w-48"
+                            x-show="open" x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95" style="z-index: 4000">
+                            <div class="px-2 py-2 bg-white rounded-md"><a
+                                class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                href="passports.html">passports and visas</a><a
+                                class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                href="whentogo.html">when to go</a><a
+                                class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                href="mobilephones.html">mobile phones</a><a
+                                class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                href="genealogy.html">genealogy</a><a
+                                class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                href="carrental.html">car rental</a><a
+                                class="block px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-ActiveGray focus:text-ActiveGray  hover:underline focus:outline-none focus:shadow-outline"
+                                href="howtogo.html">how to go</a></div>
+                        </div>
+                    </div><a
+                        class="px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg navItem dark-mode:focus:test dark-mode:hover:test dark-mode:text-gray-200 md:mt-0 active:text-ActiveGray hover:text-ActiveGray focus:text-ActiveGray focus:outline-none focus:shadow-outline"
+                        href="../blog/index.html">blog</a><a
+                        class="px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg navItem dark-mode:focus:test dark-mode:hover:test dark-mode:text-gray-200 md:mt-0 active:text-ActiveGray hover:text-ActiveGray focus:text-ActiveGrayfocus:outline-none focus:shadow-outline"
+                        href="#">faq</a><a
+                        class="px-4 py-2 mt-2 text-sm font-normal bg-transparent rounded-lg navItem dark-mode:focus:test dark-mode:hover:test dark-mode:text-gray-200 md:mt-0 active:text-white hover:text-gray-700 focus:text-gray-900 focus:outline-none focus:shadow-outline"
+                        href="../contact/index.html">contact</a><a
+                        class="px-4 py-2 mt-2 text-sm font-light bg-ActiveGray text-white text-center rounded-md md:mt-0 md:ml-8 focus:outline-none focus:shadow-outline"
+                        href="/itinerary">start itinerary</a>
+                </nav>
+            </div>
+        </div>
+        <div class="mt-8 space-y-2">
+            <h1 class="flex text-center justify-center text-sm">travel tips</h1>
+            <h1 class="flex text-center justify-center text-2xl">How to Go</h1>
+        </div>
+        <article data-editable data-name="body">
+            <h1 class="mx-auto px-20 w-full max-w-screen-xl mt-10 leading-12 text-lg font-bold">Fly from U.S.</h1>
+            <p class="mx-auto px-20 w-full max-w-screen-xl mt-5 mb-10 leading-12 text-lg">
+                Airlines that fly to Ireland directly from the U.S.:
+            </p>
+            <ul class="mx-auto px-20 w-full max-w-screen-xl mt-10 mb-20 leading-12 text-lg list-disc list-inside">
+                <li class="self-center">Aer Lingus</li>
+                <li class="self-center">American Airlines</li>
+                <li class="self-center">Delta</li>
+                <li class="self-center">Norwegian</li>
+                <li class="self-center">United</li>
+            </ul>
+        </article>
+        <article>
+            <div data-editable data-name="body2-header">
+                <h1 class="mx-auto px-20 w-full max-w-screen-xl mt-10 leading-12 text-lg font-bold">Airports in Ireland</h1>
+                <p class="mx-auto px-20 w-full max-w-screen-xl mt-5 mb-10 leading-12 text-lg">
+                    Instead of looking at airlines that fly into Ireland, let’s take a look at the airports in Ireland, listed in order of passenger movement:
+                </p>
+            </div>
+            <div class="flex flex-row mx-auto px-20 w-full max-w-screen-xl mt-10 mb-20">
+                <div data-editable data-name="body2-list">
+                    <ul class="leading-12 text-lg list-disc list-inside">
+                        <li class="self-center">Dublin (DUB)</li>
+                        <li class="self-center">Belfast (BFS)</li>
+                        <li class="self-center">Belfast City (BHD)</li>
+                        <li class="self-center">Cork (ORK)</li>
+                        <li class="self-center">Shannon (SNN)</li>
+                        <li class="self-center">Knock (NOC)</li>
+                        <li class="self-center">Kerry (KIR)</li>
+                        <li class="self-center">Derry (LDY)</li>
+                        <li class="self-center">Waterford (WAT)</li>
+                        <li class="self-center">Donegal (CFN)</li>
+                    </ul>
+                </div>
+                <div class="flex ml-auto self-center" data-editable data-name="body2-img">
+                    <img class="mx-auto px-20 object-cover w-full max-w-screen-xl"
+                    src="http://grassintheroad.com/wp-content/uploads/2017/11/map_Ireland_airports.jpg">
+                </div>
+            </div>
+        </article>
+        <article>
+            <div data-editable data-name="body3-header">
+                <h1 class="mx-auto px-20 w-full max-w-screen-xl mt-10 leading-12 text-lg font-bold">Seaports in Ireland</h1>
+            </div>
+            <div class="flex flex-row mx-auto px-20 w-full max-w-screen-xl mt-10 mb-20">
+                <div data-editable data-name="body3-list">
+                    <h1 class="font-normal text-lg underline mb-5">Ferries from the UK:</h1>
+                    <ul class="leading-12 text-base list-disc list-inside mb-10">
+                        <li class="self-center">Irish Ferries into Dublin or Rosslare</li>
+                        <li class="self-center">P&O into Dublin or Larne</li>
+                        <li class="self-center">Stena Line to Belfast, Dublin, or Rosslare</li>
+                    </ul>
+                    <h1 class="font-normal text-lg underline mb-5">Ferries from France:</h1>
+                    <ul class="leading-12 text-base list-disc list-inside mb-10">
+                        <li class="self-center">Brittany Ferries into Cork</li>
+                        <li class="self-center">Irish Ferries into Dublin or Rosslare</li>
+                    </ul>
+                    <p>
+                        <b><u>Direct Ferries</u></b> is a travel aggregator, so definitely worth a look if you’d like to compare options.
+                    </p>
+                </div>
+                <div class="flex ml-auto self-center" data-editable data-name="body3-img">
+                    <img class="mx-auto px-20 object-cover w-full max-w-screen-xl"
+                    src="http://grassintheroad.com/wp-content/uploads/2017/11/map_Ireland_ferry_ports.jpg">
+                </div>
+            </div>
+        </article>
+    </div>
+    <footer class="text-gray-600 body-font footer bg-ActiveGray">
+        <div
+            class="container px-5 py-24 mx-auto flex flex-wrap flex-col md:items-center lg:items-start md:flex-row md:flex-nowrap">
+            <div class="w-64 flex-shrink-0 mx-auto text-center md:mx-0 md:text-left"><a
+                    class="flex title-font font-medium items-center justify-center text-gray-900 md:justify-start"><span
+                        class="text-xl text-white">Grass in the <span class="text-GITR">Road</span></span></a>
+                <div class="flex flex-row mt-10 space-x-4 md:justify-start justify-center"><a href="#"><svg width="40"
+                            height="40" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M60 30C60 13.4298 46.5703 0 30 0C13.4298 0 0 13.4298 0 30C0 44.9766 10.9688 57.3867 25.3125 59.6367V38.6719H17.6953V30H25.3125V23.3906C25.3125 15.873 29.7891 11.7188 36.6445 11.7188C39.9258 11.7188 43.3594 12.3047 43.3594 12.3047V19.6875H39.5742C35.8476 19.6875 34.6875 22.002 34.6875 24.375V30H43.0078L41.6777 38.6719H34.6875V59.6367C49.0312 57.3867 60 44.9766 60 30Z"
+                                fill="#40F500"></path>
+                            <path
+                                d="M41.6778 38.6719L43.0078 30H34.6876V24.375C34.6876 22.002 35.8477 19.6875 39.5743 19.6875H43.3594V12.3047C43.3594 12.3047 39.9258 11.7188 36.6446 11.7188C29.7892 11.7188 25.3126 15.873 25.3126 23.3906V30H17.6953V38.6719H25.3126V59.6367C26.8418 59.877 28.4063 60 30.0001 60C31.5938 60 33.1583 59.877 34.6876 59.6367V38.6719H41.6778Z"
+                                fill="#121212"> </path>
+                        </svg></a><a href="#"><svg width="40" height="40" viewBox="0 0 60 60" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 30C0 13.4315 13.4315 0 30 0C46.5685 0 60 13.4315 60 30C60 46.5685 46.5685 60 30 60C13.4315 60 0 46.5685 0 30Z"
+                                fill="#40F500"></path>
+                            <path
+                                d="M29.1015 24.3844L29.1645 25.4225L28.1153 25.2954C24.2961 24.8081 20.9596 23.1556 18.1266 20.3804L16.7418 19.0034L16.385 20.0202C15.6295 22.2871 16.1121 24.681 17.686 26.291C18.5254 27.1809 18.3365 27.308 16.8886 26.7784C16.385 26.6089 15.9443 26.4817 15.9024 26.5452C15.7555 26.6936 16.2591 28.6214 16.6577 29.3841C17.2034 30.4434 18.3155 31.4814 19.5326 32.0957L20.5609 32.583L19.3438 32.6042C18.1686 32.6042 18.1266 32.6254 18.2526 33.0702C18.6723 34.4472 20.33 35.9091 22.1766 36.5446L23.4778 36.9895L22.3445 37.6674C20.6658 38.642 18.6933 39.1927 16.7208 39.2351C15.7764 39.2564 15 39.341 15 39.4046C15 39.6165 17.5601 40.8029 19.05 41.2689C23.5196 42.6459 28.8288 42.0527 32.8158 39.7012C35.6486 38.0276 38.4815 34.7015 39.8035 31.4814C40.517 29.7654 41.2305 26.63 41.2305 25.1259C41.2305 24.1514 41.2934 24.0242 42.4685 22.8591C43.161 22.1811 43.8115 21.4396 43.9375 21.2279C44.1473 20.8254 44.1264 20.8254 43.0561 21.1855C41.2725 21.821 41.0206 21.7362 41.902 20.783C42.5525 20.105 43.3289 18.8762 43.3289 18.5161C43.3289 18.4526 43.0141 18.5585 42.6574 18.7491C42.2798 18.961 41.4404 19.2787 40.8108 19.4695L39.6776 19.8296L38.6494 19.1305C38.0829 18.7491 37.2854 18.3255 36.8658 18.1984C35.7955 17.9017 34.1588 17.9441 33.1935 18.2831C30.5704 19.2365 28.9126 21.6939 29.1015 24.3844Z"
+                                fill="#121212"></path>
+                        </svg></a><a href="#"><svg width="40" height="40" viewBox="0 0 60 60" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 30C0 13.4315 13.4315 0 30 0C46.5685 0 60 13.4315 60 30C60 46.5685 46.5685 60 30 60C13.4315 60 0 46.5685 0 30Z"
+                                fill="#40F500"></path>
+                            <path
+                                d="M29.9998 22.0266C32.441 22.0266 34.0876 23.0811 35.0266 23.9622L38.6955 20.38C36.4421 18.2855 33.5098 17 29.9998 17C24.9155 17 20.5243 19.9177 18.3866 24.1644L22.5898 27.4289C23.6443 24.2944 26.5621 22.0266 29.9998 22.0266Z"
+                                fill="#121212"></path>
+                            <path
+                                d="M42.48 30.2886C42.48 29.2197 42.3934 28.4397 42.2055 27.6309H30V32.4552H37.1645C37.02 33.6541 36.24 35.4597 34.5066 36.673L38.6089 39.8509C41.0645 37.583 42.48 34.2464 42.48 30.2886Z"
+                                fill="#121212"></path>
+                            <path
+                                d="M22.6044 32.5708C22.3299 31.7619 22.171 30.8952 22.171 29.9997C22.171 29.1041 22.3299 28.2374 22.5899 27.4286L18.3865 24.1641C17.5055 25.9263 16.9999 27.9052 16.9999 29.9997C16.9999 32.0941 17.5055 34.0731 18.3865 35.8352L22.6044 32.5708Z"
+                                fill="#121212"></path>
+                            <path
+                                d="M30 42.9992C33.51 42.9992 36.4566 41.8437 38.6089 39.8503L34.5066 36.6726C33.4089 37.4381 31.9355 37.9726 30 37.9726C26.5622 37.9726 23.6445 35.7047 22.6045 32.5703L18.4011 35.8347C20.5389 40.0814 24.9155 42.9992 30 42.9992Z"
+                                fill="#121212"></path>
+                        </svg></a><a href="#"><svg width="40" height="40" viewBox="0 0 60 60" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 30C0 13.4315 13.4315 0 30 0C46.5685 0 60 13.4315 60 30C60 46.5685 46.5685 60 30 60C13.4315 60 0 46.5685 0 30Z"
+                                fill="#70FF00"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M20 24C20 22.9391 20.4214 21.9217 21.1716 21.1716C21.9217 20.4214 22.9391 20 24 20H36C37.0609 20 38.0783 20.4214 38.8284 21.1716C39.5786 21.9217 40 22.9391 40 24V36C40 37.0609 39.5786 38.0783 38.8284 38.8284C38.0783 39.5786 37.0609 40 36 40H24C22.9391 40 21.9217 39.5786 21.1716 38.8284C20.4214 38.0783 20 37.0609 20 36V24ZM24 22C23.4696 22 22.9609 22.2107 22.5858 22.5858C22.2107 22.9609 22 23.4696 22 24V36C22 36.5304 22.2107 37.0391 22.5858 37.4142C22.9609 37.7893 23.4696 38 24 38H36C36.5304 38 37.0391 37.7893 37.4142 37.4142C37.7893 37.0391 38 36.5304 38 36V24C38 23.4696 37.7893 22.9609 37.4142 22.5858C37.0391 22.2107 36.5304 22 36 22H24ZM30 27C29.2044 27 28.4413 27.3161 27.8787 27.8787C27.3161 28.4413 27 29.2044 27 30C27 30.7956 27.3161 31.5587 27.8787 32.1213C28.4413 32.6839 29.2044 33 30 33C30.7956 33 31.5587 32.6839 32.1213 32.1213C32.6839 31.5587 33 30.7956 33 30C33 29.2044 32.6839 28.4413 32.1213 27.8787C31.5587 27.3161 30.7956 27 30 27ZM25 30C25 28.6739 25.5268 27.4021 26.4645 26.4645C27.4021 25.5268 28.6739 25 30 25C31.3261 25 32.5979 25.5268 33.5355 26.4645C34.4732 27.4021 35 28.6739 35 30C35 31.3261 34.4732 32.5979 33.5355 33.5355C32.5979 34.4732 31.3261 35 30 35C28.6739 35 27.4021 34.4732 26.4645 33.5355C25.5268 32.5979 25 31.3261 25 30V30ZM35.5 26C35.8978 26 36.2794 25.842 36.5607 25.5607C36.842 25.2794 37 24.8978 37 24.5C37 24.1022 36.842 23.7206 36.5607 23.4393C36.2794 23.158 35.8978 23 35.5 23C35.1022 23 34.7206 23.158 34.4393 23.4393C34.158 23.7206 34 24.1022 34 24.5C34 24.8978 34.158 25.2794 34.4393 25.5607C34.7206 25.842 35.1022 26 35.5 26Z"
+                                fill="#121212"></path>
+                        </svg></a></div><a
+                    class="flex font-normal items-center justify-center text-white mt-10 md:justify-start"
+                    href="#"><span class="text-white">Privacy Policy</span></a><a
+                    class="flex font-normal items-center justify-center text-white mt-4 md:justify-start" href="#"><span
+                        class="text-white">Terms and Conditions</span></a>
+            </div>
+            <div
+                class="flex-grow flex flex-wrap -mb-10 mt-10 text-center flex-col md:pl-20 md:mt-0 md:text-left md:flex-row">
+                <div class="lg:w-1/3 md:hidden lg:block"></div>
+                <div class="lg:w-1/3">
+                    <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3 text-lg">Navigation</h2>
+                    <nav class="list-none mb-10 space-y-4 mt-8">
+                        <li><a class="text-white font-light" href="./index.html">home</a></li>
+                        <li><a class="text-white font-light" href="./trips/index.html">ireland</a></li>
+                        <li><a class="text-white font-light" href="">travel tips</a></li>
+                        <li><a class="text-white font-light" href="#">blog</a></li>
+                        <li><a class="text-white font-light" href="#">faq</a></li>
+                        <li><a class="text-white font-light" href="contact">contact</a></li>
+                    </nav>
+                </div>
+                <div class="lg:w-1/3">
+                    <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3 text-lg">Contact</h2>
+                    <nav class="list-none mb-10 mt-8 space-y-4">
+                        <li><a class="text-white font-light flex flex-row justify-center md:justify-start"><svg
+                                    width="40" height="40" viewBox="0 0 60 60" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="email_24px">
+                                        <path id="icon/communication/email_24px" fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M55 15C55 12.25 52.75 10 50 10H10C7.25 10 5 12.25 5 15V45C5 47.75 7.25 50 10 50H50C52.75 50 55 47.75 55 45V15ZM50 15L30 27.5L10 15H50ZM30 32.5L10 20V45H50V20L30 32.5Z"
+                                            fill="white"></path>
+                                    </g>
+                                </svg><span class="self-center mx-4">inquiries@grassintheroad.com</span></a></li>
+                        <li><a class="text-white font-light flex flex-row justify-center md:justify-start"><svg
+                                    width="40" height="40" viewBox="0 0 60 60" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="phone_24px">
+                                        <path id="icon/communication/phone_24px" fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10 7.5H18.75C20.125 7.5 21.25 8.625 21.25 10C21.25 13.125 21.75 16.125 22.675 18.925C22.95 19.8 22.75 20.775 22.05 21.475L16.55 26.975C20.15 34.05 25.95 39.825 33.025 43.45L38.525 37.95C39.025 37.475 39.65 37.225 40.3 37.225C40.55 37.225 40.825 37.25 41.075 37.35C43.875 38.275 46.9 38.775 50 38.775C51.375 38.775 52.5 39.9 52.5 41.275V50C52.5 51.375 51.375 52.5 50 52.5C26.525 52.5 7.5 33.475 7.5 10C7.5 8.625 8.625 7.5 10 7.5ZM16.3489 12.5C16.4989 14.725 16.8739 16.9 17.4739 18.975L14.4739 21.975C13.4489 18.975 12.7989 15.8 12.5739 12.5H16.3489ZM40.9988 42.5493C43.1238 43.1493 45.2988 43.5243 47.4988 43.6743V47.3993C44.1988 47.1743 41.0238 46.5243 37.9988 45.5243L40.9988 42.5493Z"
+                                            fill="white"></path>
+                                    </g>
+                                </svg><span class="self-center mx-4">(423) 555-5555 </span></a></li>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="bg-ActiveGray">
+            <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+                <p class="text-gray-500 text-sm text-center sm:text-left">&copy; 2021 Grass in the Road &mdash;<a
+                        class="text-gray-600 ml-1" href="https://vesulo.com" rel="noopener noreferrer"
+                        target="_blank">Designed and created by <span class="text-Vesulo">Vesulo</span></a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="../../../assets/content-tools.min.js"></script>
+<script src="../../../js/editor.js"></script>
+
+</html>
