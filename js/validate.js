@@ -372,7 +372,7 @@ document.getElementById("switchItnSubmit").addEventListener("click", (e) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-    mode: "cors",
+    mode: "no-cors",
   })
     .then((response) => response.json())
     .then((data) => {
